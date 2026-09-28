@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f5f4ee" />
+    <meta name="description" content="Turn a photograph into a clear, human-readable caption with Frame & Phrase." />
+    <title>Frame & Phrase | Image captioning</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+    <script src="/config.js"></script>
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="Frame and Phrase home">
+          <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+          <span>frame <i>&</i> phrase</span>
+        </a>
+        <div class="topbar-meta">
+          <span class="model-label">IMAGE CAPTIONING</span>
+          <span class="service-status" id="service-status"><span class="status-dot"></span><span id="service-label">Checking service</span></span>
+        </div>
+      </header>
+
+      <main>
+        <section class="intro" aria-labelledby="page-title">
+          <div>
+            <p class="eyebrow">A small study in seeing</p>
+            <h1 id="page-title">Give the image<br />a few good words.</h1>
+          </div>
+          <p class="intro-copy">Choose a photograph to create a concise caption. Your image stays in this browser until you ask the caption service to process it.</p>
+        </section>
+
+        <section class="workspace" aria-label="Image caption workspace">
+          <div class="upload-panel">
+            <div class="panel-heading">
+              <div><span class="step-number">01</span><h2>Choose an image</h2></div>
+              <span class="quiet-label">JPG, PNG, WEBP</span>
+            </div>
+            <input id="image-input" class="visually-hidden" type="file" accept="image/jpeg,image/png,image/webp" />
+            <button class="dropzone" id="dropzone" type="button" aria-describedby="upload-hint">
+              <span class="upload-symbol" aria-hidden="true"><span></span></span>
+              <span class="drop-title" id="drop-title">Drop a photo here</span>
+              <span class="drop-subtitle" id="upload-hint">or <span class="browse-link">browse files</span> · up to 10 MB</span>
+            </button>
+            <div class="upload-foot">
+              <span id="file-detail">No image selected</span>
+              <button class="text-button" id="remove-image" type="button" hidden>Remove image</button>
+            </div>
+          </div>
+
+          <div class="result-panel" aria-live="polite">
+            <div class="panel-heading">
+              <div><span class="step-number">02</span><h2>Your caption</h2></div>
+              <span class="quiet-label" id="result-label">WAITING FOR IMAGE</span>
+            </div>
+            <div class="preview-area" id="preview-area">
+              <div class="empty-preview" id="empty-preview">
+                <span class="preview-frame" aria-hidden="true"><span></span></span>
+                <p>Your image preview will appear here.</p>
+              </div>
+              <img class="preview-image" id="preview-image" alt="Selected image preview" hidden />
+              <div class="loading-overlay" id="loading-overlay" hidden><span class="spinner" aria-hidden="true"></span><span>Finding the words…</span></div>
+            </div>
+            <div class="caption-area">
+              <p class="caption-placeholder" id="caption-placeholder">A clear description is just one step away.</p>
+              <p class="caption-text" id="caption-text" hidden></p>
+              <p class="error-message" id="error-message" role="alert" hidden></p>
+            </div>
+            <div class="result-actions">
+              <button class="generate-button" id="generate-button" type="button" disabled>
+                <span>Generate caption</span><span class="button-arrow" aria-hidden="true">&#8594;</span>
+              </button>
+              <div class="caption-tools" id="caption-tools" hidden>
+                <button class="tool-button" id="copy-button" type="button" title="Copy caption">Copy</button>
+                <button class="tool-button" id="download-button" type="button" title="Download caption as a text file">Download</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="service-note" id="service-note">
+          <span class="note-mark" aria-hidden="true">i</span>
+          <p><strong>Caption service not connected.</strong> Add your deployed API URL in <code>config.js</code> to enable generation. The frontend can be deployed independently on Vercel.</p>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <span>FRAME & PHRASE</span>
+        <span>Flickr8k-trained image captioning project</span>
+      </footer>
+    </div>
+  </body>
+</html>
